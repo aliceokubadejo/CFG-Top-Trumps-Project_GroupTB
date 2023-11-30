@@ -39,4 +39,16 @@ stat_choice = input("which stat would you like to use? ")
 
 #opposing pokemon
 
+chosen_stat = chosen_pokemon[stat_choice]
+opponent_stat = opponent_pokemon[stat_choice]
+
 print(f"your opponent has been given {opponent_pokemon['name']}")
+print(f'their {stat_choice} is {opponent_stat}')
+
+
+if chosen_stat > opponent_stat:
+    print('Congrats! Your pokemon trumped the computer's !! Winner winner chicken dinner!')
+elif chosen_stat < opponent_stat:
+    print('Loser!')
+else:
+    print("It's a draw!")
