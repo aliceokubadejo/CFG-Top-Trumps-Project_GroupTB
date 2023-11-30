@@ -47,8 +47,8 @@ print(f'their {stat_choice} is {opponent_stat}')
 
 
 if chosen_stat > opponent_stat:
-    print('Congrats! Your pokemon trumped the computer's !! Winner winner chicken dinner!')
+    print("Congrats! Your pokemon trumped the computer's !! Winner winner chicken dinner!")
 elif chosen_stat < opponent_stat:
-    print('Loser!')
+    print("Loser!")
 else:
     print("It's a draw!")
