@@ -1,15 +1,11 @@
 import random
 import requests
-def user_pokemon():
-    pokemon_card_number = random.randint(1,51)
-    url = f'https://pokeapi.co/api/v2/pokemon/{pokemon_card_number}/'
-    response = requests.get(url)
-    pokemon = response.json()
+def random_pokemon():
+   #function to enable API integration and randomised card selection
+    pokemon_card = random.randint(1,200)
+
+def run():
+# function to notify player of card selected and determine if theirs trumps computers
 
 
-    return {
-    'name': pokemon['name'],
-    'id': pokemon['id'],
-    'height': pokemon['height'],
-    'weight': pokemon['weight'],
-     }
+run()
