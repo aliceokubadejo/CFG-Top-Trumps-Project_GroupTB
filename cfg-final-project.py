@@ -52,3 +52,8 @@ elif chosen_stat < opponent_stat:
     print("Loser!")
 else:
     print("It's a draw!")
+
+#naming rounds 
+#allowing player to decide to continue playing
+#looping to accomodate additional rounds (may need to create separate function)
+#creating condition where play stops at best of 5
