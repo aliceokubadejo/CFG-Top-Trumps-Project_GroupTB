@@ -1,6 +1,9 @@
 import random
 import requests
 
+player_count = 0
+computer_count = 0
+
 # defining the random and linking the API
 def random_pokemon():
     pokemon_id = random.randint(1, 151)
@@ -47,8 +50,10 @@ print(f'their {stat_choice} is {opponent_stat}')
 
 
 if chosen_stat > opponent_stat:
+    player_count =+1
     print("Congrats! Your pokemon trumped the computer's !! Winner winner chicken dinner!")
 elif chosen_stat < opponent_stat:
+     computer_count =+2
     print("Loser!")
 else:
     print("It's a draw!")
@@ -57,3 +62,6 @@ else:
 #allowing player to decide to continue playing
 #looping to accomodate additional rounds (may need to create separate function)
 #creating condition where play stops at best of 5
+
+
+#presentation - run the code then talk through code + # commentary 
