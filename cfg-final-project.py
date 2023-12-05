@@ -1,6 +1,10 @@
 import random
 import requests
 
+# asking player name
+player_name = input("What is your name? ")
+print(f"Hi there {player_name} you're about to play a game of Pokemon Top Trumps")
+
 player_count = 0
 computer_count = 0
 
@@ -48,23 +52,28 @@ for win in range(3):
     chosen_stat = chosen_pokemon[stat_choice]
     opponent_stat = opponent_pokemon[stat_choice]
 
+    # all my homies hate Drowzee
+    print(f"Your opponent has been given {opponent_pokemon['name']}")
+    if opponent_pokemon['id'] == 96:
+        print(f"and as we all know {opponent_pokemon['name']} is garbage")
+    else:
+        print(f"tbf {opponent_pokemon['name']} is also pretty cool")
 
-    print(f"your opponent has been given {opponent_pokemon['name']}")
-    print(f'their {stat_choice} is {opponent_stat}')
-
+    print(f"Their {stat_choice} is {opponent_stat}")
 
     if chosen_stat > opponent_stat:
         player_count = player_count + 1
-        print("Congrats! Your pokemon trumped the computer's !! Winner winner chicken dinner!")
+        print(f"Congrats {player_name}! Your pokemon trumped the computer's !! Winner winner chicken dinner!")
     elif chosen_stat < opponent_stat:
         computer_count = computer_count + 1
-        print("Loser!")
+        print(f"Sorry {player_name} This time you're a loser!")
     else:
         print("It's a draw!")
 
-    print(player_count)
-    print(computer_count)
+    print(f"{player_name} has {player_count} points")
+    print(f"the computer has {computer_count} points")
 
+print(f"final score is {player_name} has {player_count} points and the computer has {computer_count} points")
 
 #challenges = loops (while/for),
 #successes = extending project, functioning code, github
