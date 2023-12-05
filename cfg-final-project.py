@@ -54,17 +54,20 @@ for win in range(3):
 
 
     if chosen_stat > opponent_stat:
-        player_count =+1
+        player_count = player_count + 1
         print("Congrats! Your pokemon trumped the computer's !! Winner winner chicken dinner!")
     elif chosen_stat < opponent_stat:
-        computer_count =+1
+        computer_count = computer_count + 1
         print("Loser!")
     else:
         print("It's a draw!")
 
     print(player_count)
     print(computer_count)
-    #naming rounds
+
+
+#challenges = loops (while/for),
+#successes = extending project, functioning code, github
 
 
 
