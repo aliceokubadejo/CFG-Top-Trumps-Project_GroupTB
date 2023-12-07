@@ -1,16 +1,17 @@
+#imported modules to enable API integration and randomised data selection
 import random
 import requests
 
-# asking player name
-player_name = input("What is your name? ")
-print(f"Hi there {player_name} you're about to play a game of Pokemon Top Trumps")
 
+print("Welcome to Pokemon Top Trumps")
+#setting the counter for the rounds of our game and creating the 'for' loop
 player_count = 0
 computer_count = 0
 
-for win in range(3):
-    print("Round ", win+1)
-# defining the random and linking the API
+for rounds in range(5):
+    print("Round ", rounds+1)
+
+    # defining the random and linking the API
     def random_pokemon():
         pokemon_id = random.randint(1, 151)
         url = f"https://pokeapi.co/api/v2/pokemon/{pokemon_id}/"
@@ -25,58 +26,55 @@ for win in range(3):
             'height': pokemon['height'],
         }
 
+
+
+    #gameplay script
+
     chosen_pokemon = random_pokemon()
     opponent_pokemon = random_pokemon()
-
-    #printing the player pokemon
-    def run():
-
-        print(f"you have been given {chosen_pokemon['name']} as your pokemon")
-        #drowzee hating club
+    print(f"You have drawn {chosen_pokemon['name']} as your pokemon")
+    #drowzee hating club
     if chosen_pokemon['id'] == 96:
         print(f"{chosen_pokemon['name']} is trash...yikes")
         print("but we move")
     else:
-        print(f"{chosen_pokemon['name']} is pretty cool")
-
-    print(f"{chosen_pokemon['name']} has the ID number of {chosen_pokemon['id']}")
-    print(f"{chosen_pokemon['name']} weighs {chosen_pokemon['weight']} lbs")
-    print(f"{chosen_pokemon['name']} height is {chosen_pokemon['height']}")
+        print(f"id: {chosen_pokemon['id']}")
+        print(f"weight: {chosen_pokemon['weight']} lbs")
+        print(f"height: {chosen_pokemon['height']} ft")
 
     #asking for stat choice
 
-    stat_choice = input("which stat would you like to use? ")
-
-    #opposing pokemon
+    stat_choice = input("Which stat would you like to use? ")
 
     chosen_stat = chosen_pokemon[stat_choice]
     opponent_stat = opponent_pokemon[stat_choice]
 
-    # all my homies hate Drowzee
-    print(f"Your opponent has been given {opponent_pokemon['name']}")
-    if opponent_pokemon['id'] == 96:
-        print(f"and as we all know {opponent_pokemon['name']} is garbage")
-    else:
-        print(f"tbf {opponent_pokemon['name']} is also pretty cool")
 
-    print(f"Their {stat_choice} is {opponent_stat}")
+    print(f"Your opponent has been given {opponent_pokemon['name']}")
+    print(f'Their {stat_choice} is {opponent_stat}')
+
 
     if chosen_stat > opponent_stat:
         player_count = player_count + 1
-        print(f"Congrats {player_name}! Your pokemon trumped the computer's !! Winner winner chicken dinner!")
+        print("You win this round!")
     elif chosen_stat < opponent_stat:
         computer_count = computer_count + 1
-        print(f"Sorry {player_name} This time you're a loser!")
+        print("You lose this round!")
     else:
         print("It's a draw!")
 
-    print(f"{player_name} has {player_count} points")
-    print(f"the computer has {computer_count} points")
+#tally for each round
+    print(f'User: {player_count}')
+    print(f'Computer: {computer_count}')
 
-print(f"final score is {player_name} has {player_count} points and the computer has {computer_count} points")
 
-#challenges = loops (while/for),
-#successes = extending project, functioning code, github
+#final score outside of loop
+if player_count > computer_count:
+    print(f'Congratulations, you have won the game!')
+if computer_count > player_count:
+    print(f'The computer has beaten you at Pokemon Top Trumps, too bad!')
+
+
 
 
 
