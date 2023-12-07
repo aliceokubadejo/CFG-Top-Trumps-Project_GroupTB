@@ -2,8 +2,10 @@
 import random
 import requests
 
+# asking player name
+player_name = input("What is your name? ")
+print(f"Welcome {player_name} to Pokemon Top Trumps")
 
-print("Welcome to Pokemon Top Trumps")
 #setting the counter for the rounds of our game and creating the 'for' loop
 player_count = 0
 computer_count = 0
@@ -27,7 +29,6 @@ for rounds in range(5):
         }
 
 
-
     #gameplay script
 
     chosen_pokemon = random_pokemon()
@@ -49,11 +50,13 @@ for rounds in range(5):
     chosen_stat = chosen_pokemon[stat_choice]
     opponent_stat = opponent_pokemon[stat_choice]
 
-
+#opponent pokemon is picked
     print(f"Your opponent has been given {opponent_pokemon['name']}")
+    if opponent_pokemon['id'] == 96:
+        print(f"and as we all know {opponent_pokemon['name']} is garbage")
     print(f'Their {stat_choice} is {opponent_stat}')
 
-
+#top trumps win conditions 
     if chosen_stat > opponent_stat:
         player_count = player_count + 1
         print("You win this round!")
@@ -64,13 +67,13 @@ for rounds in range(5):
         print("It's a draw!")
 
 #tally for each round
-    print(f'User: {player_count}')
+    print(f"{player_name}: {player_count}")
     print(f'Computer: {computer_count}')
 
 
 #final score outside of loop
 if player_count > computer_count:
-    print(f'Congratulations, you have won the game!')
+    print(f"Congratulations {player_name}, you have won the game!")
 if computer_count > player_count:
     print(f'The computer has beaten you at Pokemon Top Trumps, too bad!')
 
