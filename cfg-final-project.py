@@ -20,28 +20,41 @@ for rounds in range(5):
         response = requests.get(url)
         pokemon = response.json()
 
-    # making a dictionary of the stuff we want
+    # making a dictionary of the stats we want
         return {
             'name': pokemon['name'],
             'id': pokemon['id'],
             'weight': pokemon['weight'],
             'height': pokemon['height'],
+            'attack': pokemon['stats'][2]['base_stat'],
+            'defence': pokemon['stats'][3]['base_stat'],
+            'speed': pokemon['stats'][5]['base_stat'],
         }
-
 
     #gameplay script
 
     chosen_pokemon = random_pokemon()
     opponent_pokemon = random_pokemon()
     print(f"You have drawn {chosen_pokemon['name']} as your pokemon")
+    
     #drowzee hating club
     if chosen_pokemon['id'] == 96:
         print(f"{chosen_pokemon['name']} is trash...yikes")
         print("but we move")
+        print(f"id: {chosen_pokemon['id']}")
+        print(f"weight: {chosen_pokemon['weight']} lbs")
+        print(f"height: {chosen_pokemon['height']} ft")
+        print(f"attack: {chosen_pokemon['attack']}")
+        print(f"defence: {chosen_pokemon['defence']}")
+        print(f"speed: {chosen_pokemon['speed']}")
+        
     else:
         print(f"id: {chosen_pokemon['id']}")
         print(f"weight: {chosen_pokemon['weight']} lbs")
         print(f"height: {chosen_pokemon['height']} ft")
+        print(f"attack: {chosen_pokemon['attack']}")
+        print(f"defence: {chosen_pokemon['defence']}")
+        print(f"speed: {chosen_pokemon['speed']}")
 
     #asking for stat choice
 
