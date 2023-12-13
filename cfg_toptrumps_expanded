@@ -1,0 +1,134 @@
+#imported modules to enable API integration and randomised data selection
+import random
+import requests
+import time
+import pyfiglet
+
+# asking player name
+player_name = input("What is your name? ")
+time.sleep(0.8)
+
+#using ASCII art for prettier intro
+welcome = "Pokemon Top Trumps"
+ASCII_art_1 = pyfiglet.figlet_format(welcome)
+print(ASCII_art_1)
+time.sleep(1)
+print(f"Welcome {player_name} to Pokemon Top Trumps")
+
+#setting the counter for the rounds of our game and creating the 'for' loop
+player_count = 0
+computer_count = 0
+
+for rounds in range(5):
+    time.sleep(0.8)
+    print("Round ", rounds+1)
+
+    # defining the random and linking the API
+    def random_pokemon():
+        pokemon_id = random.randint(1, 151)
+        url = f"https://pokeapi.co/api/v2/pokemon/{pokemon_id}/"
+        response = requests.get(url)
+        pokemon = response.json()
+
+    # making a dictionary of the stats we want
+        return {
+            'name': pokemon['name'],
+            'id': pokemon['id'],
+            'weight': pokemon['weight'],
+            'height': pokemon['height'],
+            'attack': pokemon['stats'][2]['base_stat'],
+            'defence': pokemon['stats'][3]['base_stat'],
+            'speed': pokemon['stats'][5]['base_stat'],
+        }
+
+    #gameplay script
+    time.sleep(0.5)
+    chosen_pokemon = random_pokemon()
+    opponent_pokemon = random_pokemon()
+
+    print()
+    print(f"You have drawn {chosen_pokemon['name']} as your pokemon")
+    time.sleep(1.5)
+    #drowzee hating club
+    if chosen_pokemon['id'] == 96:
+        print(f"{chosen_pokemon['name']} is trash...yikes")
+        time.sleep(1)
+        print("but we move")
+        print()
+        time.sleep(1.2)
+        print(f"id: {chosen_pokemon['id']}")
+        time.sleep(0.8)
+        print(f"weight: {chosen_pokemon['weight']} lbs")
+        time.sleep(0.8)
+        print(f"height: {chosen_pokemon['height']/10} m")
+        time.sleep(0.8)
+        print(f"attack: {chosen_pokemon['attack']}")
+        time.sleep(0.8)
+        print(f"defence: {chosen_pokemon['defence']}")
+        time.sleep(0.8)
+        print(f"speed: {chosen_pokemon['speed']}")
+    else:
+        print(f"id: {chosen_pokemon['id']}")
+        time.sleep(0.8)
+        print(f"weight: {chosen_pokemon['weight']} lbs")
+        time.sleep(0.8)
+        print(f"height: {chosen_pokemon['height']/10} m")
+        time.sleep(0.8)
+        print(f"attack: {chosen_pokemon['attack']}")
+        time.sleep(0.8)
+        print(f"defence: {chosen_pokemon['defence']}")
+        time.sleep(0.8)
+        print(f"speed: {chosen_pokemon['speed']}")
+
+    #asking for stat choice
+    time.sleep(1)
+    print()
+    stat_choice = input("Which stat would you like to use? ")
+    time.sleep(0.8)
+
+    chosen_stat = chosen_pokemon[stat_choice]
+    opponent_stat = opponent_pokemon[stat_choice]
+
+#opponent pokemon is picked
+    print(f"Your opponent has been given {opponent_pokemon['name']}")
+    time.sleep(1)
+    if opponent_pokemon['id'] == 96:
+        print(f"and as we all know {opponent_pokemon['name']} is garbage")
+        time.sleep(1.2)
+    print(f'Their {stat_choice} is {opponent_stat}')
+    time.sleep(1.5)
+
+#top trumps win conditions 
+    if chosen_stat > opponent_stat:
+        player_count = player_count + 1
+        print()
+        print("You win this round!")
+        time.sleep(0.5)
+    elif chosen_stat < opponent_stat:
+        computer_count = computer_count + 1
+        print()
+        print("You lose this round!")
+        time.sleep(0.5)
+    else:
+        print()
+        print("It's a draw!")
+    time.sleep(1)
+
+
+
+#tally for each round
+    print()
+    print(f"{player_name}: {player_count}")
+    time.sleep(0.8)
+    print(f'Computer: {computer_count}')
+    time.sleep(0.8)
+    print()
+
+
+#final score outside of loop
+if player_count > computer_count:
+    print()
+    print(f"Congratulations {player_name}, you have won the game!")
+if computer_count > player_count:
+    print()
+    print(f'The computer has beaten you at Pokemon Top Trumps, too bad!')
